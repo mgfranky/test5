@@ -3,11 +3,15 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	title := "Jenkins X golang http devops test example"
+	if value := os.Getenv("title"); value != "" {
+		title = value
+	}
 
 	from := ""
 	if r.URL != nil {
